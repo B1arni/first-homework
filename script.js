@@ -38,4 +38,3 @@ function exersise2() {
   }
   return `Ответ: ${value1 + value2}, ${value1 / value2}.`;
 }
-console.log(exersise2());

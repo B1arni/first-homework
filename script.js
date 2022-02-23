@@ -1,40 +1,53 @@
 'use strict';
 
-function exersise1() {
+function converter() {
   let value = +prompt();
-  let numeralSystem = +prompt();
-  let result = [];
-  if (isNaN(value) === true || isNaN(numeralSystem) === true) {
-    return 'Некорректный ввод!';
-  } else if (numeralSystem === 2) {
+  const numeralSystem = +prompt();
+  const errorMessage1 = 'Некорректный ввод!';
+  const errorMessage2 = 'Неподдерживаемая система счисления!';
+  const result = [];
+
+  function conversion() {
     while (value > 0) {
-      result.push(value % 2);
-      value = Math.floor(value / 2);
+      result.push(value % numeralSystem);
+      value = Math.floor(value / numeralSystem);
     }
-  } else if (numeralSystem === 3) {
-    while (value > 0) {
-      result.push(value % 3);
-      value = Math.floor(value / 3);
-    }
-  } else if (numeralSystem === 8) {
-    while (value > 0) {
-      result.push(value % 8);
-      value = Math.floor(value / 8);
-    }
-  } else {
-    return 'Неподдерживаемая система счисления!';
   }
+
+  if (isNaN(numeralSystem) || isNaN(value)) {
+    return errorMessage1;
+  }
+
+  switch (numeralSystem) {
+    case 2:
+      conversion();
+      break;
+    case 3:
+      conversion();
+      break;
+    case 8:
+      conversion();
+      break;
+    default:
+      return errorMessage2;
+  }
+
   return result.reverse().join('');
 }
 
-function exersise2() {
-  let value1 = +prompt();
-  if (isNaN(value1) === true) {
-    return 'Некорректный ввод!';
+function sumAndDiv() {
+  const value1 = +prompt();
+  const errorMessage = 'Некорректный ввод!';
+
+  if (isNaN(value1)) {
+    return errorMessage;
   }
-  let value2 = +prompt();
-  if (isNaN(value2) === true) {
-    return 'Некорректный ввод!';
+
+  const value2 = +prompt();
+
+  if (isNaN(value2)) {
+    return errorMessage;
   }
+
   return `Ответ: ${value1 + value2}, ${value1 / value2}.`;
 }
